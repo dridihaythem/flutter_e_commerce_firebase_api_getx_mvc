@@ -31,7 +31,7 @@ class SignupScreen extends StatelessWidget {
         text: 'Already have an account? ',
         underLineText: 'Login',
         onPressed: () {
-          Get.toNamed('/testlogin');
+          Get.toNamed('/login');
         },
       ),
       backgroundColor: Colors.white,
