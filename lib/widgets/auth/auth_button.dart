@@ -8,10 +8,12 @@ class AuthButton extends StatelessWidget {
     super.key,
     required this.title,
     required this.onPressed,
+    this.isLoading = false,
   });
 
   final String title;
   final VoidCallback onPressed;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +26,31 @@ class AuthButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Text(
-        title,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Visibility(
+            visible: isLoading,
+            child: Container(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
       ),
     );
   }

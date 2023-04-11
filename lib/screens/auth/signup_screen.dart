@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
@@ -146,12 +147,21 @@ class SignupScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                AuthButton(
-                  title: 'SIGN UP',
-                  onPressed: () {
-                    _formKey.currentState!.validate();
-                  },
-                ),
+                GetBuilder<AuthController>(builder: (context) {
+                  return AuthButton(
+                    title: 'SIGN UP',
+                    isLoading: _controller.isLoading,
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        await _controller.signupWithEmailAndPassword(
+                          name: _nameController.text.trim(),
+                          email: _emailController.text.trim(),
+                          password: _passwordController.text,
+                        );
+                      }
+                    },
+                  );
+                }),
                 SocialAuth(),
               ],
             ),
