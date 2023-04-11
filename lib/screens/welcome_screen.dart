@@ -2,6 +2,7 @@ import 'package:e_commerce_firebase_getw/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -83,7 +84,9 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   Spacer(),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offNamed('/login');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: mainColor,
                       padding: EdgeInsets.symmetric(
@@ -108,7 +111,9 @@ class WelcomeScreen extends StatelessWidget {
                     height: 20,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.offNamed('/signup');
+                    },
                     child: Text.rich(
                       TextSpan(
                         text: 'Don\'t have an account? ',
