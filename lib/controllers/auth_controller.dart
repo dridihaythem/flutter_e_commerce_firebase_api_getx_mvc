@@ -1,5 +1,6 @@
 import 'package:e_commerce_firebase_getw/utils/custom_snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,8 @@ class AuthController extends GetxController {
   bool isLoading = false;
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  GoogleSignIn googleSignIn = GoogleSignIn();
 
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
@@ -127,5 +130,18 @@ class AuthController extends GetxController {
 
     isLoading = false;
     update();
+  }
+
+  void loginWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      Get.offNamed('/home');
+    } catch (e) {
+      customSnackBar(
+        type: 'error',
+        title: 'Error',
+        message: e.toString(),
+      );
+    }
   }
 }

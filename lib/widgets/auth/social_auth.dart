@@ -1,11 +1,14 @@
+import 'package:e_commerce_firebase_getw/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class SocialAuth extends StatelessWidget {
-  const SocialAuth({super.key});
+  SocialAuth({super.key});
 
+  final _controller = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,11 +62,16 @@ class SocialAuth extends StatelessWidget {
             SizedBox(
               width: 30,
             ),
-            Image.asset(
-              'assets/images/google.png',
-              width: 40,
-              height: 40,
-              fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () {
+                _controller.loginWithGoogle();
+              },
+              child: Image.asset(
+                'assets/images/google.png',
+                width: 40,
+                height: 40,
+                fit: BoxFit.cover,
+              ),
             ),
           ],
         )
