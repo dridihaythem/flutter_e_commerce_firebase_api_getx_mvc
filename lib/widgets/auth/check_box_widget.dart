@@ -7,8 +7,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class CheckBoxWidget extends StatelessWidget {
-  CheckBoxWidget({super.key});
+  CheckBoxWidget({super.key, required this.title});
 
+  final Widget title;
   final _controller = Get.find<AuthController>();
 
   @override
@@ -38,26 +39,7 @@ class CheckBoxWidget extends StatelessWidget {
           SizedBox(
             width: 10,
           ),
-          Text.rich(
-            TextSpan(
-              text: 'I agree to the ',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-              ),
-              children: [
-                TextSpan(
-                  text: 'Terms & Conditions',
-                  style: TextStyle(
-                    color: mainColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          title
         ],
       );
     });

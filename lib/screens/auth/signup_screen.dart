@@ -5,6 +5,7 @@ import 'package:e_commerce_firebase_getw/widgets/auth/auth_bottom_navigation_bar
 import 'package:e_commerce_firebase_getw/widgets/auth/auth_button.dart';
 import 'package:e_commerce_firebase_getw/widgets/auth/auth_text_field.dart';
 import 'package:e_commerce_firebase_getw/widgets/auth/check_box_widget.dart';
+import 'package:e_commerce_firebase_getw/widgets/auth/social_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -31,7 +32,7 @@ class SignupScreen extends StatelessWidget {
         text: 'Already have an account? ',
         underLineText: 'Login',
         onPressed: () {
-          Get.toNamed('/login');
+          Get.offNamed('/login');
         },
       ),
       backgroundColor: Colors.white,
@@ -120,7 +121,28 @@ class SignupScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                CheckBoxWidget(),
+                CheckBoxWidget(
+                  title: Text.rich(
+                    TextSpan(
+                      text: 'I agree to the ',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: 'Terms & Conditions',
+                          style: TextStyle(
+                            color: mainColor,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: 20,
                 ),
@@ -130,6 +152,7 @@ class SignupScreen extends StatelessWidget {
                     _formKey.currentState!.validate();
                   },
                 ),
+                SocialAuth(),
               ],
             ),
           ),
