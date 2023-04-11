@@ -101,4 +101,31 @@ class AuthController extends GetxController {
     isLoading = false;
     update();
   }
+
+  Future<void> resetPassword({
+    required String email,
+  }) async {
+    if (isLoading) {
+      return;
+    }
+    isLoading = true;
+    update();
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      customSnackBar(
+        type: 'success',
+        title: 'Success',
+        message: 'Password reset link sent to your email',
+      );
+    } catch (e) {
+      customSnackBar(
+        type: 'error',
+        title: 'Error',
+        message: 'Invalid email',
+      );
+    }
+
+    isLoading = false;
+    update();
+  }
 }

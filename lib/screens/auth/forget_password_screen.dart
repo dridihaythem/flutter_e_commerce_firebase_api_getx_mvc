@@ -69,10 +69,20 @@ class ForgetPasswordScreen extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                AuthButton(
-                  title: 'Send',
-                  onPressed: () {
-                    _formKey.currentState!.validate();
+                GetBuilder<AuthController>(
+                  builder: (context) {
+                    return AuthButton(
+                      title: 'Send',
+                      isLoading: _controller.isLoading,
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
+                          await _controller.resetPassword(
+                            email: _emailController.text,
+                          );
+                          _emailController.clear();
+                        }
+                      },
+                    );
                   },
                 ),
               ],
