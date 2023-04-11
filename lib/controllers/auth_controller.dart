@@ -1,6 +1,7 @@
 import 'package:e_commerce_firebase_getw/utils/custom_snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,8 @@ class AuthController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   GoogleSignIn googleSignIn = GoogleSignIn();
+
+  FacebookAuth facebookAuth = FacebookAuth.instance;
 
   void togglePasswordVisibility() {
     isPasswordVisible = !isPasswordVisible;
@@ -132,9 +135,27 @@ class AuthController extends GetxController {
     update();
   }
 
-  void loginWithGoogle() async {
+  Future<void> loginWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      Get.offNamed('/home');
+    } catch (e) {
+      customSnackBar(
+        type: 'error',
+        title: 'Error',
+        message: e.toString(),
+      );
+    }
+  }
+
+  Future<void> loginWithFacebook() async {
+    try {
+      final LoginResult loginResult = await facebookAuth.login();
+
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+
+      await auth.signInWithCredential(facebookAuthCredential);
       Get.offNamed('/home');
     } catch (e) {
       customSnackBar(

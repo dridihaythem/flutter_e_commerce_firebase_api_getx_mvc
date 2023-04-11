@@ -53,18 +53,23 @@ class SocialAuth extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/facebook.png',
-              width: 40,
-              height: 40,
-              fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () async {
+                await _controller.loginWithFacebook();
+              },
+              child: Image.asset(
+                'assets/images/facebook.png',
+                width: 40,
+                height: 40,
+                fit: BoxFit.cover,
+              ),
             ),
             SizedBox(
               width: 30,
             ),
             GestureDetector(
-              onTap: () {
-                _controller.loginWithGoogle();
+              onTap: () async {
+                await _controller.loginWithGoogle();
               },
               child: Image.asset(
                 'assets/images/google.png',
