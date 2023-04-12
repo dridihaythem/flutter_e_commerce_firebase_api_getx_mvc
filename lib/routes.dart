@@ -38,8 +38,8 @@ class AppRoutes {
       page: () => MainScreen(),
       bindings: [
         AuthBinding(),
-        MainBinding(),
         ProductBinding(),
+        MainBinding(),
       ],
     ),
   ];
