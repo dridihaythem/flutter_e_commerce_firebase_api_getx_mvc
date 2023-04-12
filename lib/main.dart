@@ -1,6 +1,7 @@
 import 'package:e_commerce_firebase_getw/controllers/theme_controller.dart';
 import 'package:e_commerce_firebase_getw/routes.dart';
 import 'package:e_commerce_firebase_getw/utils/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -46,7 +47,9 @@ class MyApp extends StatelessWidget {
       ),
       themeMode:
           ThemeController.isDarkMode() ? ThemeMode.dark : ThemeMode.light,
-      initialRoute: AppRoutes.initialRoute,
+      initialRoute: FirebaseAuth.instance.currentUser == null
+          ? AppRoutes.initialRoute
+          : AppRoutes.mainRoute,
       getPages: AppRoutes.routes,
     );
   }

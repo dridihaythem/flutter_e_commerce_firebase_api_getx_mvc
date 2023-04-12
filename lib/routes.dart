@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 class AppRoutes {
   static const initialRoute = '/welcome';
+  static const mainRoute = '/main';
 
   static final routes = [
     GetPage(
