@@ -29,6 +29,19 @@ class Product {
     rating = json['rating'];
   }
 
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "price": price,
+        "description": description,
+        "category": category,
+        "image": image,
+        "rating": {
+          "rate": rating['rate'],
+          "count": rating['count'],
+        },
+      };
+
   static List<Product> productsFromJson(String jsonData) {
     final data = json.decode(jsonData);
     return List<Product>.from(data.map((item) => Product.fromJson(item)));
