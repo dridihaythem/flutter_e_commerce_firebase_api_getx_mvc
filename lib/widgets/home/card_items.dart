@@ -45,10 +45,24 @@ class CardItems extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.favorite_outline,
+                        Obx(
+                          () => IconButton(
+                            splashRadius: 1,
+                            onPressed: () {
+                              _controller
+                                  .toggleFavorites(_controller.products[index]);
+
+                              print(_controller.favorites);
+                              print(_controller
+                                  .isFavorite(_controller.products[index]));
+                            },
+                            icon: Icon(
+                              Icons.favorite,
+                              color: _controller
+                                      .isFavorite(_controller.products[index])
+                                  ? Colors.red
+                                  : Colors.grey,
+                            ),
                           ),
                         ),
                         IconButton(

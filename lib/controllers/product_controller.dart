@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 class ProductController extends GetxController {
   RxList<Product> products = <Product>[].obs;
+  RxList<Product> favorites = <Product>[].obs;
 
   RxBool isLoading = true.obs;
 
@@ -21,5 +22,17 @@ class ProductController extends GetxController {
     this.products.addAll(products);
 
     isLoading(false);
+  }
+
+  toggleFavorites(Product product) {
+    if (isFavorite(product)) {
+      favorites.remove(product);
+    } else {
+      favorites.add(product);
+    }
+  }
+
+  bool isFavorite(Product product) {
+    return favorites.contains(product);
   }
 }
