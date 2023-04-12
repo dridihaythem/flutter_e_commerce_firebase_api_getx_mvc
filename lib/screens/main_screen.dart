@@ -16,6 +16,7 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        centerTitle: true,
         title: GetBuilder<MainController>(builder: (context) {
           return Text(
             _mainController

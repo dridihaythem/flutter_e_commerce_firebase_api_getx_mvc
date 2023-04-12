@@ -1,5 +1,6 @@
 import 'package:e_commerce_firebase_getw/bindings/auth_binding.dart';
 import 'package:e_commerce_firebase_getw/bindings/main_binding.dart';
+import 'package:e_commerce_firebase_getw/bindings/product_binding.dart';
 import 'package:e_commerce_firebase_getw/screens/auth/forget_password_screen.dart';
 import 'package:e_commerce_firebase_getw/screens/auth/login_screen.dart';
 import 'package:e_commerce_firebase_getw/screens/auth/signup_screen.dart';
@@ -38,6 +39,7 @@ class AppRoutes {
       bindings: [
         AuthBinding(),
         MainBinding(),
+        ProductBinding(),
       ],
     ),
   ];
