@@ -138,6 +138,15 @@ class AuthController extends GetxController {
   Future<void> loginWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      await FirebaseAuth.instance.signInWithCredential(credential);
       Get.offNamed('/main');
     } catch (e) {
       customSnackBar(
@@ -164,5 +173,13 @@ class AuthController extends GetxController {
         message: e.toString(),
       );
     }
+  }
+
+  Future<void> logout() async {
+    await auth.signOut();
+    await googleSignIn.signOut();
+    await facebookAuth.logOut();
+
+    Get.offNamed('/login');
   }
 }
