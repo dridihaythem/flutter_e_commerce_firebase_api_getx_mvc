@@ -16,7 +16,14 @@ class SettingScreen extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {
-            _authController.logout();
+            Get.defaultDialog(
+              title: 'Logout',
+              middleText: 'Are you sure you want to logout?',
+              onConfirm: () {
+                _authController.logout();
+              },
+              onCancel: () {},
+            );
           },
           child: Text('Logout'),
         )
