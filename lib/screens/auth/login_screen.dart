@@ -23,7 +23,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
         elevation: 0,
       ),
       bottomNavigationBar: AuthButtomNavigationBar(
@@ -33,7 +32,6 @@ class LoginScreen extends StatelessWidget {
           Get.offNamed('/signup');
         },
       ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -122,7 +120,6 @@ class LoginScreen extends StatelessWidget {
                     TextSpan(
                       text: 'Remember me',
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 16,
                       ),
                     ),

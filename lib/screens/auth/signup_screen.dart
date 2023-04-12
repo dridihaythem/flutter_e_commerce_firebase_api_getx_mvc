@@ -26,7 +26,6 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
         elevation: 0,
       ),
       bottomNavigationBar: AuthButtomNavigationBar(
@@ -36,7 +35,6 @@ class SignupScreen extends StatelessWidget {
           Get.offNamed('/login');
         },
       ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -127,7 +125,6 @@ class SignupScreen extends StatelessWidget {
                     TextSpan(
                       text: 'I agree to the ',
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 16,
                       ),
                       children: [

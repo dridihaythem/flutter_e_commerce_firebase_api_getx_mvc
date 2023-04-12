@@ -1,4 +1,5 @@
 import 'package:e_commerce_firebase_getw/controllers/main_controller.dart';
+import 'package:e_commerce_firebase_getw/controllers/theme_controller.dart';
 import 'package:e_commerce_firebase_getw/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -24,10 +25,12 @@ class MainScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              print(Get.isDarkMode);
-              Get.isDarkMode
-                  ? Get.changeThemeMode(ThemeMode.light)
-                  : Get.changeThemeMode(ThemeMode.dark);
+              ThemeController.changeTheme();
+              if (ThemeController.isDarkMode()) {
+                Get.changeThemeMode(ThemeMode.dark);
+              } else {
+                Get.changeThemeMode(ThemeMode.light);
+              }
             },
             icon: Image.asset('assets/images/shop.png'),
           )
