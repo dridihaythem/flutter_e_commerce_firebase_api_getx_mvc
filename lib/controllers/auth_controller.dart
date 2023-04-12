@@ -55,7 +55,7 @@ class AuthController extends GetxController {
       );
       await auth.currentUser!.updateDisplayName(name);
 
-      Get.offAllNamed('/home');
+      Get.offAllNamed('/main');
     } on FirebaseAuthException catch (e) {
       String message = '';
 
@@ -95,7 +95,7 @@ class AuthController extends GetxController {
     update();
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
-      Get.offAllNamed('/home');
+      Get.offAllNamed('/main');
     } catch (e) {
       customSnackBar(
         type: 'error',
@@ -138,7 +138,7 @@ class AuthController extends GetxController {
   Future<void> loginWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      Get.offNamed('/home');
+      Get.offNamed('/main');
     } catch (e) {
       customSnackBar(
         type: 'error',
@@ -156,7 +156,7 @@ class AuthController extends GetxController {
           FacebookAuthProvider.credential(loginResult.accessToken!.token);
 
       await auth.signInWithCredential(facebookAuthCredential);
-      Get.offNamed('/home');
+      Get.offNamed('/main');
     } catch (e) {
       customSnackBar(
         type: 'error',
