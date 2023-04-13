@@ -70,7 +70,8 @@ class CardItems extends StatelessWidget {
                                 .addProductToCart(_controller.products[index]);
                           },
                           icon: Icon(
-                            Icons.add,
+                            Icons.shopping_cart,
+                            color: Colors.grey,
                           ),
                         )
                       ],
