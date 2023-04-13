@@ -64,6 +64,7 @@ class CardItems extends StatelessWidget {
                           ),
                         ),
                         IconButton(
+                          splashRadius: 1,
                           onPressed: () {
                             _cartController
                                 .addProductToCart(_controller.products[index]);
