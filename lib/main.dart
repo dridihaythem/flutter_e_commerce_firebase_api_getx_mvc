@@ -32,6 +32,11 @@ class MyApp extends StatelessWidget {
           selectedItemColor: Colors.green,
           unselectedItemColor: Colors.black,
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(mainColor),
+          ),
+        ),
       ),
       darkTheme: ThemeData.dark().copyWith(
         appBarTheme: AppBarTheme(
@@ -44,9 +49,15 @@ class MyApp extends StatelessWidget {
           selectedIconTheme: IconThemeData(color: Colors.green),
           unselectedItemColor: Colors.green.withOpacity(0.75),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(mainColor),
+          ),
+        ),
       ),
-      themeMode:
-          ThemeController.isDarkMode() ? ThemeMode.dark : ThemeMode.light,
+      // themeMode:
+      //     ThemeController.isDarkMode() ? ThemeMode.dark : ThemeMode.light,
+      themeMode: ThemeMode.light,
       initialRoute: FirebaseAuth.instance.currentUser == null
           ? AppRoutes.initialRoute
           : AppRoutes.mainRoute,
