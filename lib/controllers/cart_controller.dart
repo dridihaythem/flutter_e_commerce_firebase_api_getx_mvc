@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class CartController extends GetxController {
   RxList<CartItem> cartItems = <CartItem>[].obs;
   RxDouble totalPrice = 0.0.obs;
+  RxInt cartItemsCount = 0.obs;
 
   void addProductToCart(Product product) {
     if (cartItems.any((el) => el.product.id == product.id)) {
@@ -45,6 +46,15 @@ class CartController extends GetxController {
     });
     print(total);
     totalPrice(total);
+    updateCartItemsCount();
+  }
+
+  updateCartItemsCount() {
+    int count = 0;
+    cartItems.forEach((element) {
+      count += element.quantity;
+    });
+    cartItemsCount(count);
   }
 }
 

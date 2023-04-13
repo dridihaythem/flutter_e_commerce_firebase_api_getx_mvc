@@ -1,3 +1,4 @@
+import 'package:e_commerce_firebase_getw/controllers/cart_controller.dart';
 import 'package:e_commerce_firebase_getw/controllers/main_controller.dart';
 import 'package:e_commerce_firebase_getw/controllers/theme_controller.dart';
 import 'package:e_commerce_firebase_getw/utils/theme.dart';
@@ -10,6 +11,7 @@ class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
   final _mainController = Get.find<MainController>();
+  final _cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +26,39 @@ class MainScreen extends StatelessWidget {
           ); // 'Home
         }),
         actions: [
-          IconButton(
-            onPressed: () {
-              ThemeController.changeTheme();
-              // if (ThemeController.isDarkMode()) {
-              //   Get.changeThemeMode(ThemeMode.dark);
-              // } else {
-              //   Get.changeThemeMode(ThemeMode.light);
-              // }
-              Get.toNamed('/cart');
-            },
-            icon: Image.asset('assets/images/shop.png'),
-          )
+          Stack(
+            children: [
+              IconButton(
+                onPressed: () {
+                  ThemeController.changeTheme();
+                  // if (ThemeController.isDarkMode()) {
+                  //   Get.changeThemeMode(ThemeMode.dark);
+                  // } else {
+                  //   Get.changeThemeMode(ThemeMode.light);
+                  // }
+                  Get.toNamed('/cart');
+                },
+                icon: Image.asset('assets/images/shop.png'),
+              ),
+              Obx(
+                () => Visibility(
+                  visible: _cartController.cartItemsCount > 0,
+                  child: Positioned(
+                    top: -2,
+                    right: 0,
+                    child: CircleAvatar(
+                      radius: 10,
+                      backgroundColor: Colors.red,
+                      child: Text(_cartController.cartItemsCount.toString()),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 10,
+          ),
         ],
       ),
       bottomNavigationBar: GetBuilder<MainController>(builder: (context) {
