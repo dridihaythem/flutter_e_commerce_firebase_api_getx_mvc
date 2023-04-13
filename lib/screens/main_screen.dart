@@ -27,11 +27,12 @@ class MainScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               ThemeController.changeTheme();
-              if (ThemeController.isDarkMode()) {
-                Get.changeThemeMode(ThemeMode.dark);
-              } else {
-                Get.changeThemeMode(ThemeMode.light);
-              }
+              // if (ThemeController.isDarkMode()) {
+              //   Get.changeThemeMode(ThemeMode.dark);
+              // } else {
+              //   Get.changeThemeMode(ThemeMode.light);
+              // }
+              Get.toNamed('/cart');
             },
             icon: Image.asset('assets/images/shop.png'),
           )

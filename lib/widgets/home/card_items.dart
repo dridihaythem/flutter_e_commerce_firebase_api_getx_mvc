@@ -1,3 +1,4 @@
+import 'package:e_commerce_firebase_getw/controllers/cart_controller.dart';
 import 'package:e_commerce_firebase_getw/controllers/product_controller.dart';
 import 'package:e_commerce_firebase_getw/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class CardItems extends StatelessWidget {
   CardItems({super.key});
 
   final _controller = Get.find<ProductController>();
+  final _cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +53,6 @@ class CardItems extends StatelessWidget {
                             onPressed: () {
                               _controller
                                   .toggleFavorites(_controller.products[index]);
-
-                              print(_controller.favorites);
-                              print(_controller
-                                  .isFavorite(_controller.products[index]));
                             },
                             icon: Icon(
                               Icons.favorite,
@@ -66,7 +64,10 @@ class CardItems extends StatelessWidget {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _cartController
+                                .addProductToCart(_controller.products[index]);
+                          },
                           icon: Icon(
                             Icons.add,
                           ),
