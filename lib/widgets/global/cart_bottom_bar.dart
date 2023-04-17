@@ -5,9 +5,19 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
 class CartButtomBar extends StatelessWidget {
-  CartButtomBar({super.key});
+  CartButtomBar({
+    super.key,
+    required this.buttonText,
+    required this.priceText,
+    required this.price,
+    required this.onPressed,
+  });
 
-  final _controller = Get.find<CartController>();
+  final String buttonText;
+  final String priceText;
+  final double price;
+  final VoidCallback onPressed;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +31,7 @@ class CartButtomBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Total',
+                priceText,
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.grey,
@@ -30,13 +40,11 @@ class CartButtomBar extends StatelessWidget {
               SizedBox(
                 height: 5,
               ),
-              Obx(
-                () => Text(
-                  '\$ ${_controller.totalPrice.value.toStringAsFixed(2)}',
-                  style: TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                '\$ ${price.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -53,8 +61,8 @@ class CartButtomBar extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
-                onPressed: () {},
-                label: Text('Checkout'),
+                onPressed: onPressed,
+                label: Text(buttonText),
                 icon: Icon(Icons.shopping_cart),
               ),
             ),

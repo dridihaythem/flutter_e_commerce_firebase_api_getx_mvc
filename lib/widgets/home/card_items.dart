@@ -1,5 +1,6 @@
 import 'package:e_commerce_firebase_getw/controllers/cart_controller.dart';
 import 'package:e_commerce_firebase_getw/controllers/product_controller.dart';
+import 'package:e_commerce_firebase_getw/screens/product_details_screen.dart';
 import 'package:e_commerce_firebase_getw/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -30,100 +31,107 @@ class CardItems extends StatelessWidget {
                 childAspectRatio: 0.7,
                 maxCrossAxisExtent: 200,
               ),
-              itemBuilder: (context, index) => Container(
-                decoration: BoxDecoration(
-                  color: Get.isDarkMode ? Colors.black : Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
-                      spreadRadius: 3,
-                      blurRadius: 5,
-                    )
-                  ],
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Obx(
-                          () => IconButton(
-                            splashRadius: 1,
-                            onPressed: () {
-                              _controller
-                                  .toggleFavorites(_controller.products[index]);
-                            },
-                            icon: Icon(
-                              Icons.favorite,
-                              color: _controller
-                                      .isFavorite(_controller.products[index])
-                                  ? Colors.red
-                                  : Colors.grey,
-                            ),
-                          ),
-                        ),
-                        IconButton(
-                          splashRadius: 1,
-                          onPressed: () {
-                            _cartController
-                                .addProductToCart(_controller.products[index]);
-                          },
-                          icon: Icon(
-                            Icons.shopping_cart,
-                            color: Colors.grey,
-                          ),
-                        )
-                      ],
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 140,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Image.network(
-                        _controller.products[index].image,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Row(
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  Get.to(() => ProductDetailsScreen(
+                        product: _controller.products[index],
+                      ));
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Get.isDarkMode ? Colors.black : Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 3,
+                        blurRadius: 5,
+                      )
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            '\$ ${_controller.products[index].price}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(5.0),
-                              child: Row(
-                                children: [
-                                  Text(_controller
-                                      .products[index].rating['rate']
-                                      .toString()),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.white,
-                                    size: 13,
-                                  ),
-                                ],
+                          Obx(
+                            () => IconButton(
+                              splashRadius: 1,
+                              onPressed: () {
+                                _controller.toggleFavorites(
+                                    _controller.products[index]);
+                              },
+                              icon: Icon(
+                                Icons.favorite,
+                                color: _controller
+                                        .isFavorite(_controller.products[index])
+                                    ? Colors.red
+                                    : Colors.grey,
                               ),
                             ),
                           ),
+                          IconButton(
+                            splashRadius: 1,
+                            onPressed: () {
+                              _cartController.addProductToCart(
+                                  _controller.products[index]);
+                            },
+                            icon: Icon(
+                              Icons.shopping_cart,
+                              color: Colors.grey,
+                            ),
+                          )
                         ],
                       ),
-                    )
-                  ],
+                      Container(
+                        width: double.infinity,
+                        height: 140,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Image.network(
+                          _controller.products[index].image,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              '\$ ${_controller.products[index].price}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Row(
+                                  children: [
+                                    Text(_controller
+                                        .products[index].rating['rate']
+                                        .toString()),
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.white,
+                                      size: 13,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -14,6 +14,7 @@ class CartController extends GetxController {
       cartItems.add(CartItem(product: product, quantity: 1));
     }
     UpdatetotalPrice();
+    print('hi');
   }
 
   void removeProductFromCart(Product product) {
